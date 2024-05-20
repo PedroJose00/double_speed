@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="https://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="mesh" GridType="Uniform">
+      <Topology TopologyType="Tetrahedron" NumberOfElements="290103" NodesPerElement="4">
+        <DataItem Dimensions="290103 4" NumberType="Int" Format="HDF">fem_function_BVTV.h5:/Mesh/mesh/topology</DataItem>
+      </Topology>
+      <Geometry GeometryType="XYZ">
+        <DataItem Dimensions="54342 3" Format="HDF">fem_function_BVTV.h5:/Mesh/mesh/geometry</DataItem>
+      </Geometry>
+    </Grid>
+    <Grid Name="BVTV" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="BVTV" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0" />
+        <Attribute Name="BVTV" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="290103 1" Format="HDF">fem_function_BVTV.h5:/Function/BVTV/0</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
